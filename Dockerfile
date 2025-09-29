@@ -1,15 +1,11 @@
-# Single stage - build and run in same image (larger but simpler)
-FROM maven:3.8.7-openjdk-17
+# Runtime only - we build the JAR in GitHub Actions
+FROM eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
 
-# Copy entire project
-COPY . .
-
-# Build the application
-RUN mvn clean package -DskipTests
+# Copy the pre-built JAR from GitHub Actions
+COPY target/*.jar app.jar
 
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "target/*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
