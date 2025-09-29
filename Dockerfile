@@ -1,5 +1,5 @@
 # Single stage - build and run in same image (larger but simpler)
-FROM maven:3.8.6-openjdk-17
+FROM maven:3.9-openjdk-17
 
 WORKDIR /app
 
