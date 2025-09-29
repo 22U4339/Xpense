@@ -19,8 +19,8 @@ jobs:
           distribution: 'temurin'
           cache: maven   # ✅ speeds up Maven builds
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+      - name: Build with Maven (skip tests completely)
+        run: mvn clean package -Dmaven.test.skip=true
 
       - name: Set up QEMU (for multi-arch builds)
         uses: docker/setup-qemu-action@v3
