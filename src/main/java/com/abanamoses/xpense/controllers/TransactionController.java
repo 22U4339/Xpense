@@ -22,10 +22,6 @@ public class TransactionController {
     }
 
 
-    @GetMapping
-    public List<Transaction> home(){
-        return repo.findAllByOrderByDateTimeDesc();
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransaction(@PathVariable(name = "id")UUID id){
