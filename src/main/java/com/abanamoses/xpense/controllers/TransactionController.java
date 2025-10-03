@@ -14,10 +14,10 @@ import java.util.UUID;
 @RestController
 @CrossOrigin
 @RequestMapping("/transaction")
-public class Home {
+public class TransactionController {
     private final TransactionRepo repo;
 
-    public Home(TransactionRepo repo) {
+    public TransactionController(TransactionRepo repo) {
         this.repo = repo;
     }
 
