@@ -9,5 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface TransactionRepo extends JpaRepository<Transaction, UUID> {
-    List<Transaction> findAllByOrderByDateTimeDesc();
+    //List<Transaction> findAllByOrderByDateTimeDesc();
+    List<Transaction> findByUser_Id(Long id);
 }

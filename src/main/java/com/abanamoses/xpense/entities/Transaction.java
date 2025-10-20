@@ -3,11 +3,16 @@ package com.abanamoses.xpense.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Builder
 @Entity
 @Table(name = "Transactions")
 public class Transaction {
@@ -28,68 +33,11 @@ public class Transaction {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_time")
+    @CreationTimestamp
     private LocalDateTime dateTime;
 
-    public UUID getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "users_id", nullable = false)
+    private Users user;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public Transaction(UUID id, TransactionType type, float amount, String description, LocalDateTime dateTime) {
-        this.id = id;
-        this.type = type;
-        this.amount = amount;
-        this.description = description;
-        this.dateTime = dateTime;
-    }
-
-    public Transaction() {
-    }
-
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", type=" + type +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                ", dateTime=" + dateTime +
-                '}';
-    }
 }
